@@ -9,12 +9,6 @@ export function useLoad() {
 
     if (!window || typeof window === 'undefined') return;
 
-    async function loadPlugin() {
-      const VConsole = await import('vconsole');
-      new VConsole.default();
-    }
-    loadPlugin();
-
     const handleMessage = (e: any) => {
       console.log('listened message: %o', e);
       if (e.data?.type !== 'Beraciaga') return;
