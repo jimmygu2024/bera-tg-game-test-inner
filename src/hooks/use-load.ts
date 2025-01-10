@@ -18,6 +18,8 @@ export function useLoad() {
         setWebApp(_WebApp);
         setIsInitialized(true);
 
+        console.log('>>>inner _WebApp: %o', _WebApp);
+
         //#region test data
         const _data = {
           initData: _WebApp.initData,
@@ -47,7 +49,7 @@ export function useLoad() {
         setDataList(_list);
         //#endregion
       } catch (err) {
-        setError("Failed to load Telegram WebApp SDK");
+        setError(">>>inner Failed to load Telegram WebApp SDK");
       }
     };
 
