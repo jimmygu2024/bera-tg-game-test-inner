@@ -6,6 +6,7 @@ export function useLoad() {
 
   useEffect(() => {
     const handleMessage = (e: any) => {
+      console.log('listened message: %o', e);
       if (e.data?.type !== 'Beraciaga') return;
       const _data = e.data.data;
       setData(_data);
