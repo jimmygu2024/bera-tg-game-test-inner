@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import VConsole from "vconsole";
 
 export function useLoad() {
   const [data, setData] = useState({});
   const [dataList, setDataList] = useState<any>();
 
   useEffect(() => {
+    new VConsole();
+
     const handleMessage = (e: any) => {
       console.log('listened message: %o', e);
       if (e.data?.type !== 'Beraciaga') return;
