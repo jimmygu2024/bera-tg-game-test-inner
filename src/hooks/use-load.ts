@@ -8,12 +8,17 @@ export function useLoad() {
 
   useEffect(() => {
     console.log('>>> inner use load: %o', window);
-    // @ts-ignore
-    console.log('>>> TelegramWebApp: %o', window?.parent?.TelegramWebApp);
+    try {
+      // @ts-ignore
+      console.log('>>>inner TelegramWebApp: %o', window?.parent?.TelegramWebApp);
+    } catch(err) {
+      console.log('>>>inner error: %o', err);
+    }
 
     const initWebApp = async () => {
       try {
         const WebAppModule = await import("@twa-dev/sdk");
+        console.log('>>>inner WebAppModule: %o', WebAppModule);
         WebAppModule.default.ready();
         WebAppModule.default.expand();
         const _WebApp = WebAppModule.default;
