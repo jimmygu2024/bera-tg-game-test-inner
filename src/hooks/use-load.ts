@@ -5,11 +5,13 @@ export function useLoad() {
   const [dataList, setDataList] = useState<any>();
 
   useEffect(() => {
+    console.log('use load: %o', window);
+
+    if (!window || typeof window === 'undefined') return;
+
     async function loadPlugin() {
-      if (typeof window !== 'undefined') {
-        const VConsole = await import('vconsole');
-        new VConsole.default();
-      }
+      const VConsole = await import('vconsole');
+      new VConsole.default();
     }
     loadPlugin();
 
