@@ -44,6 +44,18 @@ export default function Home() {
     //#endregion
   }, [WebApp]);
 
+  useEffect(() => {
+    const handleMessage = (e: any) => {
+      console.log('>>> inner listened message: %o', e);
+    };
+
+    window?.addEventListener?.('message', handleMessage);
+
+    return () => {
+      window?.removeEventListener?.('message', handleMessage);
+    };
+  }, []);
+
   return (
     <div className="h-full overflow-y-auto">
       <ul>
