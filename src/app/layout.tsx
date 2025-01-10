@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import "./globals.css";
+import TelegramProvider from "@/context/telegram";
 
 export default function RootLayout({
   children,
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <TelegramProvider>
+          {children}
+        </TelegramProvider>
       </body>
     </html>
   );
