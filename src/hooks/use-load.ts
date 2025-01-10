@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import VConsole from "vconsole";
 
 export function useLoad() {
   const [data, setData] = useState({});
   const [dataList, setDataList] = useState<any>();
 
   useEffect(() => {
-    new VConsole();
+    async function loadPlugin() {
+      if (typeof window !== 'undefined') {
+        const VConsole = await import('vconsole');
+        new VConsole.default();
+      }
+    }
+    loadPlugin();
 
     const handleMessage = (e: any) => {
       console.log('listened message: %o', e);
