@@ -8,12 +8,21 @@ export function useLoad() {
 
   useEffect(() => {
     console.log('>>> inner use load: %o', window);
+
     try {
       // @ts-ignore
       console.log('>>>inner TelegramWebApp: %o', window?.parent?.TelegramWebApp);
     } catch(err) {
       console.log('>>>inner error: %o', err);
     }
+
+    const handleMessage = (e: any) => {
+      console.log('>>> inner: listened message %o', e);
+      if (e.data?.type !== 'Beraciaga') return;
+      const _data = e.data.data;
+      console.log('>>> inner: %o', _data);
+    };
+    window.addEventListener('message', handleMessage);
 
     const initWebApp = async () => {
       try {
@@ -61,6 +70,10 @@ export function useLoad() {
     };
 
     initWebApp();
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
   }, []);
 
   return [dataList, WebApp, isInitialized, error];
