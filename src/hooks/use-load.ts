@@ -7,7 +7,9 @@ export function useLoad() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('use load: %o', window);
+    console.log('>>> inner use load: %o', window);
+    // @ts-ignore
+    console.log('>>> TelegramWebApp: %o', window?.parent?.TelegramWebApp);
 
     const initWebApp = async () => {
       try {
