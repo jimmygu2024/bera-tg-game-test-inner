@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     if (!WebApp) return;
 
-     //#region test data2
+     //#region test data3
      const _data = {
       initData: WebApp.initData,
       initDataUnsafe: WebApp.initDataUnsafe,
